@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts//Montserrat-Bold.ttf");
+}
+@font-face {
+  font-family: "Bebasneue";
+  src: url("./fonts/bebasneue-book-webfont.woff");
+}
+html,
+body {
+  background-color: #2b2a30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+}
+.timer {
+  font-family: "Bebasneue";
+  color: white;
+  font-size: 200px;
+}
+.progress-ring__circle {
+  transition: 0.35s stroke-dashoffset;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+.start_bttn {
+  font-family: "Montserrat";
+  background-color: transparent;
+  border: none;
+  color: white;
+}
