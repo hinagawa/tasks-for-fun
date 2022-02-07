@@ -2,44 +2,84 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
-    <title>
-        Pomodoro
-    </title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+
+  <title>
+    Pomodoro
+  </title>
 </head>
 
 <body>
-    <svg
-      class="progress-ring"
-      height="600"
-      width="600"
-      >
-        <circle
-          class="progress_ring__circle"
-          stroke="#9d0000"
-          stroke-width="5"
-          fill="transparent"
-          r="290"
-          cx="300"
-          cy="300"
-        />
-        <text
-          x="150"
-          y="300"
-          class="timer"
-          fill="white"
-        >
-            15:00
-        </text>
-        <button 
-        x="150"
-        y="350"
-        class="start_bttn"
-        >S T A R T</button>
-    </svg>
+  <svg class="progress-ring" height="600" width="600">
+    <circle stroke="#9d0000" stroke-width="5" fill="transparent" r="260" cx="290" cy="290" />
+    <text x="130" y="300" id="timer" fill="white">15:00</text>
+    <text x="220" y="400" id="start_button" fill="white">
+      S T A R T
+    </text>
+    <text x="245" y="450" id="restart_button" fill="white">
+      Restart
+    </text>
+  </svg>
+  <script>
+    let startButton = document.querySelector('svg').getElementById('start_button')
+    let pauseButton = document.querySelector('svg').getElementById('pause_button')
+    let restartButton = document.querySelector('svg').getElementById('restart_button')
+    let timer = document.querySelector('svg').getElementById('timer')
+    var mins = timer.innerHTML.split(':')[0];
+    var secs = mins * 60;
+    var currentSeconds = 0;
+    var currentMinutes = 0;
+    let startOn = 0
+    let timeId = 0
+    var restart = 0
+
+    startButton.onclick = () => {
+      if (!startOn) {
+        startOn = 1
+        startCounting()
+        startButton.innerHTML = 'P A U S E'
+      }
+      else {
+        startOn = 0
+        startButton.innerHTML = 'S T A R T'
+      }
+    }
+    restartButton.onclick = () => {
+      if (!startOn) {
+        startOn = 1
+        startCounting()
+        startButton.innerHTML = 'P A U S E'
+        restart = 1
+      }
+      else restart = 1
+    }
+    function startCounting() {
+      if (startOn) {
+        currentMinutes = Math.floor(secs / 60);
+        currentSeconds = secs % 60;
+        if (currentSeconds <= 9) currentSeconds = "0" + currentSeconds;
+        secs--;
+        timer.innerHTML = currentMinutes + ":" + currentSeconds;
+        if (secs !== -1) {
+          setTimeout(startCounting, 1000);
+        }
+        else {
+          pauseButton.innerHTML = 'S T A R T'
+        }
+      }
+      else {
+        timer.innerHTML = currentMinutes + ":" + currentSeconds;
+      }
+      if (restart) {
+        secs = 15 * 60
+        restart = 0
+      }
+    }
+  </script>
+
 </body>
 
 </html>

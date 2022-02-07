@@ -15,19 +15,20 @@ body {
   height: 100%;
   position: relative;
 }
-.timer {
+#timer {
   font-family: "Bebasneue";
   color: white;
   font-size: 200px;
 }
-.progress-ring__circle {
-  transition: 0.35s stroke-dashoffset;
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
-}
-.start_bttn {
+#start_button {
   font-family: "Montserrat";
   background-color: transparent;
   border: none;
   color: white;
+  font-size: 25px;
+  cursor: pointer;
+}
+#restart_button {
+  font-family: "Montserrat";
+  cursor: pointer;
 }
